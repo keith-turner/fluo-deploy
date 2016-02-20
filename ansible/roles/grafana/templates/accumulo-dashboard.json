@@ -1,0 +1,700 @@
+{
+  "id": 1,
+  "title": "Accumulo",
+  "originalTitle": "Accumulo",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "title": "New row",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 1,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "refId": "C",
+              "tags": [],
+              "groupBy": [
+                {
+                  "type": "time",
+                  "interval": "auto"
+                }
+              ],
+              "fields": [
+                {
+                  "name": "/1000",
+                  "func": "mean"
+                }
+              ],
+              "measurement": "tserver_Updates_CommitPrepIMinTime",
+              "query": "SELECT mean(\"/1000\") AS \"/1000\" FROM \"tserver_Updates_CommitPrepIMinTime\" WHERE $timeFilter GROUP BY time($interval)",
+              "alias": "Min"
+            },
+            {
+              "alias": "Average",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value",
+                  "mathExpr": "/1000"
+                }
+              ],
+              "groupBy": [
+                {
+                  "interval": "auto",
+                  "type": "time"
+                }
+              ],
+              "measurement": "tserver_Updates_CommitPrepAvgTime",
+              "query": "SELECT mean(\"value\")/1000 AS \"value\" FROM \"tserver_Updates_CommitPrepAvgTime\" WHERE $timeFilter GROUP BY time($interval)",
+              "refId": "A",
+              "tags": []
+            },
+            {
+              "refId": "B",
+              "tags": [],
+              "groupBy": [
+                {
+                  "type": "time",
+                  "interval": "auto"
+                }
+              ],
+              "fields": [
+                {
+                  "name": "value",
+                  "func": "max",
+                  "mathExpr": "/1000"
+                }
+              ],
+              "measurement": "tserver_Updates_CommitTimeIMaxTime",
+              "query": "SELECT max(\"value\")/1000 AS \"value\" FROM \"tserver_Updates_CommitTimeIMaxTime\" WHERE $timeFilter GROUP BY time($interval)",
+              "alias": "Max"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "In memory map update time in seconds",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 3,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Min",
+              "fields": [
+                {
+                  "func": "min",
+                  "name": "value",
+                  "mathExpr": "/1000"
+                }
+              ],
+              "groupBy": [
+                {
+                  "interval": "auto",
+                  "type": "time"
+                }
+              ],
+              "measurement": "tserver_Updates_WaLogWriteTimeIMinTime",
+              "query": "SELECT min(\"value\")/1000 AS \"value\" FROM \"tserver_Updates_WaLogWriteTimeIMinTime\" WHERE $timeFilter GROUP BY time($interval)",
+              "refId": "C",
+              "tags": []
+            },
+            {
+              "alias": "Average",
+              "fields": [
+                {
+                  "func": "mean",
+                  "name": "value",
+                  "mathExpr": "/1000"
+                }
+              ],
+              "groupBy": [
+                {
+                  "interval": "auto",
+                  "type": "time"
+                }
+              ],
+              "measurement": "tserver_Updates_WaLogWriteTimeAvgTime",
+              "query": "SELECT mean(\"value\")/1000 AS \"value\" FROM \"tserver_Updates_WaLogWriteTimeAvgTime\" WHERE $timeFilter GROUP BY time($interval)",
+              "refId": "A",
+              "tags": []
+            },
+            {
+              "alias": "Max",
+              "fields": [
+                {
+                  "func": "max",
+                  "name": "value",
+                  "mathExpr": "/1000"
+                }
+              ],
+              "groupBy": [
+                {
+                  "interval": "auto",
+                  "type": "time"
+                }
+              ],
+              "measurement": "tserver_Updates_WaLogWriteTimeIMaxTime",
+              "query": "SELECT max(\"value\")/1000 AS \"value\" FROM \"tserver_Updates_WaLogWriteTimeIMaxTime\" WHERE $timeFilter GROUP BY time($interval)",
+              "refId": "B",
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Walog avg update time in seconds",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 2,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "fields": [
+                {
+                  "func": "sum",
+                  "name": "value"
+                }
+              ],
+              "groupBy": [
+                {
+                  "interval": "auto",
+                  "type": "time"
+                }
+              ],
+              "measurement": "tserver_general_entriesInMem",
+              "query": "SELECT sum(\"value\") AS \"value\" FROM \"tserver_general_entriesInMem\" WHERE $timeFilter GROUP BY time($interval)",
+              "rawQuery": true,
+              "refId": "A",
+              "tags": [],
+              "hide": false
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Entries in memory",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        }
+      ]
+    },
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 4,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Major Running",
+              "fields": [
+                {
+                  "func": "sum",
+                  "mathExpr": "",
+                  "name": "value"
+                }
+              ],
+              "groupBy": [
+                {
+                  "interval": "auto",
+                  "type": "time"
+                }
+              ],
+              "measurement": "tserver_general_activeMajCs",
+              "query": "SELECT sum(\"value\") AS \"value\" FROM \"tserver_general_activeMajCs\" WHERE $timeFilter GROUP BY time($interval)",
+              "refId": "A",
+              "tags": []
+            },
+            {
+              "alias": "Minor Running",
+              "fields": [
+                {
+                  "func": "sum",
+                  "mathExpr": "",
+                  "name": "value"
+                }
+              ],
+              "groupBy": [
+                {
+                  "interval": "auto",
+                  "type": "time"
+                }
+              ],
+              "measurement": "tserver_general_activeMinCs",
+              "query": "SELECT sum(\"value\") AS \"value\" FROM \"tserver_general_activeMinCs\" WHERE $timeFilter GROUP BY time($interval)",
+              "refId": "B",
+              "tags": []
+            },
+            {
+              "alias": "Major Queued",
+              "fields": [
+                {
+                  "func": "sum",
+                  "mathExpr": "",
+                  "name": "value"
+                }
+              ],
+              "groupBy": [
+                {
+                  "interval": "auto",
+                  "type": "time"
+                }
+              ],
+              "measurement": "tserver_general_queuedMajCs",
+              "query": "SELECT sum(\"value\") AS \"value\" FROM \"tserver_general_queuedMajCs\" WHERE $timeFilter GROUP BY time($interval)",
+              "refId": "C",
+              "tags": []
+            },
+            {
+              "alias": "Minor Queued",
+              "fields": [
+                {
+                  "func": "sum",
+                  "mathExpr": "",
+                  "name": "value"
+                }
+              ],
+              "groupBy": [
+                {
+                  "interval": "auto",
+                  "type": "time"
+                }
+              ],
+              "measurement": "tserver_general_queuedMinCs",
+              "query": "SELECT sum(\"value\") AS \"value\" FROM \"tserver_general_queuedMinCs\" WHERE $timeFilter GROUP BY time($interval)",
+              "refId": "D",
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Compactions",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": null,
+          "editable": true,
+          "error": false,
+          "fill": 1,
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "leftMin": null,
+            "rightLogBase": 1,
+            "rightMax": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2": null,
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "id": 5,
+          "interval": "10s",
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "test",
+              "fields": [
+                {
+                  "func": "sum",
+                  "name": "value"
+                }
+              ],
+              "groupBy": [
+                {
+                  "interval": "auto",
+                  "type": "time"
+                }
+              ],
+              "hide": false,
+              "measurement": "tserver_general_entries",
+              "query": "SELECT non_negative_derivative(sum(\"value\"))/10 AS \"value\" FROM tserver_general_entries WHERE $timeFilter GROUP BY time($interval) fill(0) limit 999999 offset 1",
+              "rawQuery": true,
+              "refId": "A",
+              "tags": []
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Entries writtern per second",
+          "tooltip": {
+            "shared": true,
+            "value_type": "cumulative"
+          },
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "links": []
+        },
+        {
+          "title": "Hold time in seconds",
+          "error": false,
+          "span": 4,
+          "editable": true,
+          "type": "graph",
+          "id": 6,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftLogBase": 1,
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": null,
+            "rightMin": null,
+            "rightLogBase": 1,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": true
+          },
+          "timeFrom": null,
+          "timeShift": null,
+          "targets": [
+            {
+              "refId": "B",
+              "tags": [],
+              "groupBy": [
+                {
+                  "type": "time",
+                  "interval": "auto"
+                }
+              ],
+              "fields": [
+                {
+                  "name": "value",
+                  "func": "mean"
+                }
+              ],
+              "measurement": "tserver_general_holdTime",
+              "query": "SELECT mean(\"value\") AS \"value\" FROM \"tserver_general_holdTime\" WHERE $timeFilter GROUP BY time($interval)",
+              "alias": "Average"
+            },
+            {
+              "refId": "A",
+              "tags": [],
+              "groupBy": [
+                {
+                  "type": "time",
+                  "interval": "auto"
+                }
+              ],
+              "fields": [
+                {
+                  "name": "value",
+                  "func": "max"
+                }
+              ],
+              "measurement": "tserver_general_holdTime",
+              "query": "SELECT max(\"value\") AS \"value\" FROM \"tserver_general_holdTime\" WHERE $timeFilter GROUP BY time($interval)",
+              "alias": "Max"
+            }
+          ],
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": []
+        }
+      ],
+      "title": "New row"
+    }
+  ],
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {
+    "now": true,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "refresh": "10s",
+  "schemaVersion": 7,
+  "version": 0,
+  "links": []
+}

@@ -13,6 +13,8 @@
   file: path=/etc/grafana/dashboards state=directory owner=grafana group=grafana
 - name: "add cluster dashboard configuration"
   template: src=cluster-dashboard.json dest=/etc/grafana/dashboards/cluster-dashboard.json owner=grafana group=grafana
+- name: "add accumulo dashboard configuration"
+  template: src=accumulo-dashboard.json dest=/etc/grafana/dashboards/accumulo-dashboard.json owner=grafana group=grafana
 - name: "diff fluo dashboard configuration"
   command: diff {{ fluo_home }}/contrib/grafana/fluo-dashboard.json /etc/grafana/dashboards/fluo-dashboard.json
   register: diff

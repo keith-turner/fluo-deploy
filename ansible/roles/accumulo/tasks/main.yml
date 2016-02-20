@@ -24,6 +24,7 @@
     - tracers
     - monitor
     - client.conf
+    - hadoop-metrics2-accumulo.properties
 - name: "build accumulo native libraries"
   shell: "{{ accumulo_home }}/bin/build_native_library.sh" 
   args: 
